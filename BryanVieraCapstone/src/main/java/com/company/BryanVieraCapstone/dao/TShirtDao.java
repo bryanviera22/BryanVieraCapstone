@@ -7,7 +7,7 @@ import java.util.List;
 public interface TShirtDao {
 
     //create
-    TShirt addTShirt(TShirt tShirt);
+    TShirt addTShirt(TShirt tshirt);
 
     //Read(get) TShirt by id
     TShirt getTShirt(int id);

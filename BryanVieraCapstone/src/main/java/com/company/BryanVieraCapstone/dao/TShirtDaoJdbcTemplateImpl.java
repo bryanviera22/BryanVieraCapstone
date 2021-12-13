@@ -42,20 +42,20 @@ public class TShirtDaoJdbcTemplateImpl implements TShirtDao{
     }
 
     @Override
-    public TShirt addTShirt(TShirt tShirt) {
+    public TShirt addTShirt(TShirt tshirt) {
         jdbcTemplate.update(
                 INSERT_TSHIRT_SQL,
-                tShirt.getSize(),
-                tShirt.getColor(),
-                tShirt.getDescription(),
-                tShirt.getPrice(),
-                tShirt.getQuantity());
+                tshirt.getSize(),
+                tshirt.getColor(),
+                tshirt.getDescription(),
+                tshirt.getPrice(),
+                tshirt.getQuantity());
 
         int id = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
 
-        tShirt.settShirtId(id);
+        tshirt.settShirtId(id);
 
-        return tShirt;
+        return tshirt;
     }
 
     @Override

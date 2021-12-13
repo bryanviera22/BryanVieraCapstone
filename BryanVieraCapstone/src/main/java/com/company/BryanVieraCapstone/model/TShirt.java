@@ -12,6 +12,18 @@ public class TShirt {
     private BigDecimal price;
     private int quantity;
 
+    public TShirt(){
+    }
+
+    public TShirt(int tShirtId, String size, String color, String description, BigDecimal price, int quantity){
+        this.tShirtId = tShirtId;
+        this.size = size;
+        this.color = color;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
     public int gettShirtId() {
         return tShirtId;
     }
