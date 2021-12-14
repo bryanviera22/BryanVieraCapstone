@@ -9,21 +9,19 @@ public class TShirt {
     private String size;
     private String color;
     private String description;
-    private Double price;
+    private BigDecimal price;
     private int quantity;
 
     public TShirt(){
     }
 
-    public TShirt(int tShirtId, String size, String color, String description, Double price, int quantity){
-        this.tShirtId = tShirtId;
+    public TShirt(String size, String color, String description, BigDecimal price, int quantity){
         this.size = size;
         this.color = color;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
     }
-
 
     public int gettShirtId() {
         return tShirtId;
@@ -57,11 +55,11 @@ public class TShirt {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

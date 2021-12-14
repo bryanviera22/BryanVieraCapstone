@@ -25,7 +25,7 @@ public class TShirtDaoJdbcTemplateImpl implements TShirtDao{
             "select * from t_shirt";
 
     private static final String UPDATE_TSHIRT_SQL =
-            "update t_shirt set size = ?, color = ? description = ?, price = ?, quantity = ? where t_shirt_id = ?";
+            "update t_shirt set size = ?, color = ?, description = ?, price = ?, quantity = ? where t_shirt_id = ?";
 
     private static final String DELETE_TSHIRT_SQL =
             "delete from t_shirt where t_shirt_id = ?";
@@ -42,20 +42,20 @@ public class TShirtDaoJdbcTemplateImpl implements TShirtDao{
     }
 
     @Override
-    public TShirt addTShirt(TShirt tShirt) {
+    public TShirt addTShirt(TShirt tshirt) {
         jdbcTemplate.update(
                 INSERT_TSHIRT_SQL,
-                tShirt.getSize(),
-                tShirt.getColor(),
-                tShirt.getDescription(),
-                tShirt.getPrice(),
-                tShirt.getQuantity());
+                tshirt.getSize(),
+                tshirt.getColor(),
+                tshirt.getDescription(),
+                tshirt.getPrice(),
+                tshirt.getQuantity());
 
         int id = jdbcTemplate.queryForObject("select LAST_INSERT_ID()", Integer.class);
 
-        tShirt.settShirtId(id);
+        tshirt.settShirtId(id);
 
-        return tShirt;
+        return tshirt;
     }
 
     @Override
@@ -113,7 +113,7 @@ public class TShirtDaoJdbcTemplateImpl implements TShirtDao{
         tShirt.setSize(rs.getString("size"));
         tShirt.setColor(rs.getString("color"));
         tShirt.setDescription(rs.getString("description"));
-        tShirt.setPrice(rs.getDouble("price"));
+        tShirt.setPrice(rs.getBigDecimal("price"));
         tShirt.setQuantity(rs.getInt("quantity"));
 
         return tShirt;
