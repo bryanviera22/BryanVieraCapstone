@@ -19,14 +19,19 @@ public class ConsoleDaoJdbcTemp implements ConsoleDao {
 
     private static final String INSERT_CONSOLE_SQL =
             "insert into console(model, manufacturer, memory_amount, processor, price, quantity) values (?,?,?,?,?,?)";
+
     private static final String SELECT_CONSOLE_SQL=
             "select * from console where console_id= ?";
+
     private static final String SELECT_CONSOLE_BY_MANUFACTURER_SQL=
             "select *from console where console_manufacturer=?";
+
     private static final String SELECT_ALL_CONSOLE_SQL=
             "select * from console";
+
     private static final String UPDATE_CONSOLE_SQL=
             "update console set model =?, manufacturer=?, memory_amount=?, processor=?, price=?, quantity=? where console_id=?";
+
     private static final String DELETE_CONSOLE =
             "delete from console where console_id = ?";
 
@@ -60,14 +65,12 @@ public class ConsoleDaoJdbcTemp implements ConsoleDao {
         }
     }
     @Override
-    public Console getConsoleByManufacturer(String manufacturer){
-        try{
-            return jdbcTemplate.queryForObject(SELECT_CONSOLE_BY_MANUFACTURER_SQL, this::mapRowToConsole, manufacturer);
-        }
-        catch (EmptyResultDataAccessException e){
-            return null;
-        }
+    public List<Console> getConsoleByManufacturer(String manufacturer){
+        return jdbcTemplate.query(
+                SELECT_CONSOLE_BY_MANUFACTURER_SQL,
+                this::mapRowToConsole, manufacturer);
     }
+
 
     @Override
     public List<Console> getAllConsole(){
