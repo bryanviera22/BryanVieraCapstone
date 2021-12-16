@@ -1,6 +1,6 @@
 package com.company.BryanVieraCapstone.controller;
 
-import com.company.BryanVieraCapstone.model.Console;
+import com.company.BryanVieraCapstone.model.Game;
 import com.company.BryanVieraCapstone.service.ServiceLayer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -20,8 +20,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ConsoleController.class)
-public class ConsoleControllerTest {
+@WebMvcTest(GameController.class)
+public class GameControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -31,7 +31,7 @@ public class ConsoleControllerTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    private List<Console> consoleList;
+    private List<Game> gameList;
 
     @Before
     public void setUp() throws Exception{
@@ -39,26 +39,26 @@ public class ConsoleControllerTest {
     }
 
     @Test
-    public void shouldReturnAllConsole() throws Exception{
-        String outputJson = mapper.writeValueAsString(consoleList);
+    public void shouldReturnAllGames() throws Exception {
 
-        mockMvc.perform(get("/consoles"))
+        String outputJson = mapper.writeValueAsString(gameList);
+
+        mockMvc.perform(get("/games"))
                 .andDo(print())
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void shouldReturnNewConsoleOnPostRequest() throws Exception{
+    public void shouldReturnNewGameOnPostRequest() throws Exception{
 
-        //ARRANGE
-        Console inputConsole = new Console();
-        inputConsole.setModel("X-Box S");
-        inputConsole.setManufacturer("Microsoft");
-        inputConsole.setMemory_amount("700.2GB");
-        inputConsole.setProcessor("Intel");
-        inputConsole.setPrice(new BigDecimal("299.00"));
-        inputConsole.setQuantity(2);
-
+        Game inputGame = new Game();
+        inputGame.setStudio("Nintendo");
+        inputGame.setTitle("Mario Kart 8 Deluxe");
+        inputGame.setEsrbRating("Everyone");
+        inputGame.setDescription("Hit the road with the definitive version of Mario Kart 8 and play" +
+                "anytime, anywhere! Race your friends or battle them in a revised battle mode" +
+                "on new and returning battle courses.");
+        inputGame.setPrice(new BigDecimal("39.99"));
+        inputGame.setQuantity(37);
     }
-
 }

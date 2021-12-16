@@ -1,8 +1,10 @@
 package com.company.BryanVieraCapstone.service;
 
 import com.company.BryanVieraCapstone.dao.ConsoleDao;
+import com.company.BryanVieraCapstone.dao.GameDao;
 import com.company.BryanVieraCapstone.dao.TShirtDao;
 import com.company.BryanVieraCapstone.model.Console;
+import com.company.BryanVieraCapstone.model.Game;
 import com.company.BryanVieraCapstone.model.TShirt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +15,14 @@ import java.util.List;
 public class ServiceLayer {
     private TShirtDao tShirtDao;
     private ConsoleDao consoleDao;
+    private GameDao gameDao;
 
     @Autowired
-    public ServiceLayer(TShirtDao tShirtDao, ConsoleDao consoleDao){
+    public ServiceLayer(TShirtDao tShirtDao, ConsoleDao consoleDao, GameDao gameDao){
 
         this.tShirtDao = tShirtDao;
         this.consoleDao = consoleDao;
+        this.gameDao = gameDao;
     }
 
     //TShirt API-----------------------------
@@ -84,7 +88,39 @@ public class ServiceLayer {
         return consoleDao.getConsoleByManufacturer(manufacturer);
     }
 
+    //GAME API---------------------------------------
 
+    public Game saveGame(Game game) {
+        return gameDao.addGame(game);
+    }
+
+    public Game getGameById(int id) {
+        return gameDao.getGame(id);
+    }
+
+    public List<Game> getAllGames() {
+        return gameDao.getAllGames();
+    }
+
+    public void updateGame(Game game) {
+        gameDao.updateGame(game);
+    }
+
+    public void deleteGame(int id) {
+        gameDao.deleteGame(id);
+    }
+
+    public List<Game> getGameByStudio(String studio) {
+        return gameDao.getGameByStudio(studio);
+    }
+
+    public List<Game> getGameByESRBRating(String esrbRating) {
+        return gameDao.getGameByEsrb(esrbRating);
+    }
+
+    public List<Game> getGameByTitle(String title) {
+        return gameDao.getGameByTitle(title);
+    }
 
 
 }
